@@ -129,3 +129,4 @@ dmypy.json
 .pyre/
 
 models/ckassifier.pkl #too big for github
+.idea
