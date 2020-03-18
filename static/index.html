@@ -114,6 +114,7 @@
 <script lang="javascript">
 
     async function post() {
+        document.getElementById("myDiv").innerHTML = "Loading..."; 
         let response = await fetch('/classify/', {
                 'method': 'POST',
                 mode: 'no-cors',
