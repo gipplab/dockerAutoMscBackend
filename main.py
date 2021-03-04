@@ -3,6 +3,7 @@ from fastapi import Body, FastAPI
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import RedirectResponse
 from pydantic import BaseModel, Field
+import numpy as np
 
 import pickle
 import bz2
@@ -52,6 +53,20 @@ async def read_item(article: Article = Body(..., example=example)):
     pred = classifier.predict(vector)[0]
     labels = classifier.classes_.tolist()
     return {"prediction": pred, "distribution": dist, "labels": labels}
+
+
+@app.post("/top/{k}")
+async def read_item(k: int, article: Article = Body(..., example=example)):
+    vector = encoder.transform([article.title + article.text + article.mscs])
+    probability = classifier.predict_proba(vector)
+    best_k = np.argsort(probability, axis=1)[:, -k:][0].tolist()
+    labels = classifier.classes_.tolist()
+    out = dict()
+    i = k
+    for c in best_k:
+        out[i] = labels[c]
+        i -= 1
+    return {f"top{k}": out}
 
 
 if __name__ == "__main__":
