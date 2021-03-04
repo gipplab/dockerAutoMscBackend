@@ -54,5 +54,11 @@ async def read_item(article: Article = Body(..., example=example)):
     return {"prediction": pred, "distribution": dist, "labels": labels}
 
 
+@app.post("/top/{k}")
+async def read_item(k: int, article: Article = Body(..., example=example)):
+    vector = encoder.transform([article.title + article.text + article.mscs])
+    return classifier.predict(vector)[0:k-1]
+
+
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8000)
