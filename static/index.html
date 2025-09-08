@@ -1,135 +1,137 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <title>AutoMSC demo</title>
-    <script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
-    <style>
-        /* Style inputs, select elements and textareas */
-        input[type=text], select, textarea {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-            resize: vertical;
-        }
+  <meta charset="UTF-8">
+  <title>AutoMSC demo</title>
+  <script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
+  <style>
+      /* Style inputs, select elements and textareas */
+      input[type=text],
+      select,
+      textarea {
+          width: 100%;
+          padding: 12px;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          box-sizing: border-box;
+          resize: vertical;
+      }
 
-        /* Style the label to display next to the inputs */
-        label {
-            padding: 12px 12px 12px 0;
-            display: inline-block;
-        }
+      /* Style the label to display next to the inputs */
+      label {
+          padding: 12px 12px 12px 0;
+          display: inline-block;
+      }
 
-        /* Style the submit button */
-        input[type=submit] {
-            background-color: #4CAF50;
-            color: white;
-            padding: 12px 20px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            float: right;
-        }
+      /* Style the submit button */
+      input[type=submit] {
+          background-color: #4CAF50;
+          color: white;
+          padding: 12px 20px;
+          border: none;
+          border-radius: 4px;
+          cursor: pointer;
+          float: right;
+      }
 
-        /* Style the container */
-        .container {
-            border-radius: 5px;
-            background-color: #f2f2f2;
-            padding: 20px;
-        }
+      /* Style the container */
+      .container {
+          border-radius: 5px;
+          background-color: #f2f2f2;
+          padding: 20px;
+      }
 
-        /* Floating column for labels: 25% width */
-        .col-25 {
-            float: left;
-            width: 25%;
-            margin-top: 6px;
-        }
+      /* Floating column for labels: 25% width */
+      .col-25 {
+          float: left;
+          width: 25%;
+          margin-top: 6px;
+      }
 
-        /* Floating column for inputs: 75% width */
-        .col-75 {
-            float: left;
-            width: 75%;
-            margin-top: 6px;
-        }
+      /* Floating column for inputs: 75% width */
+      .col-75 {
+          float: left;
+          width: 75%;
+          margin-top: 6px;
+      }
 
-        /* Clear floats after the columns */
-        .row:after {
-            content: "";
-            display: table;
-            clear: both;
-        }
+      /* Clear floats after the columns */
+      .row:after {
+          content: "";
+          display: table;
+          clear: both;
+      }
 
-        /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
-        @media screen and (max-width: 600px) {
-            .col-25, .col-75, input[type=submit] {
-                width: 100%;
-                margin-top: 0;
-            }
-        }
-    </style>
+      /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+      @media screen and (max-width: 600px) {
+
+          .col-25,
+          .col-75,
+          input[type=submit] {
+              width: 100%;
+              margin-top: 0;
+          }
+      }
+  </style>
 </head>
+
 <body onload="post()">
 <h2>AutoMSC demo</h2>
 <p>This is a fully OPEN demo. <a href="https://github.com/ag-gipp/dockerAutoMscBackend">Find the source on GitHub.</a>
-    Please refer to our <a href="https://github.com/ag-gipp/20CicmAutoMsc">paper</a> for details.</p>
+  Please refer to our <a href="https://github.com/ag-gipp/20CicmAutoMsc">paper</a> for details.</p>
 <div class="container">
-    <form onsubmit="post(); return false;">
-        <div class="row">
-            <div class="col-25">
-                <label for="title">Title</label>
-            </div>
-            <div class="col-75">
-                <input type="text" id="title" value="On a generalization of the Rogers generating function.">
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-25">
-                <label for="text">Text</label>
-            </div>
-            <div class="col-75">
-        <textarea id="text" style="height:200px">We derive a generalization of the Rogers generating function for the continuous \(q\)-ultraspherical/Rogers polynomials whose coefficient is a \(_2\phi_1\). From that expansion, we derive corresponding specialization and limit transition expansions for the continuous \(q\)-Hermite, continuous \(q\)-Legendre, Laguerre, and Chebyshev polynomials of the first kind. Using a generalized expansion of the Rogers generating function in terms of the Askey-Wilson polynomials by Ismail \& Simeonov whose coefficient is a \(_8\phi_7\), we derive corresponding generalized expansions for the Wilson, continuous \(q\)-Jacobi, and Jacobi polynomials. By comparing the coefficients of the Askey-Wilson expansion to our continuous \(q\)-ultraspherical/Rogers expansion, we derive a new quadratic transformation for basic hypergeometric functions which relates an \(_8\phi_7\) to a \(_2\phi_1\). We also obtain several definite integral representations which correspond to the above mentioned expansions through the use of orthogonality.
-</textarea>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-25">
-                <label for="mscs">mscs</label>
-            </div>
-            <div class="col-75">
-                <input type="text" id="mscs"
-                       value="33C55 33C45 33D45, 33D45 39A10, 35A08 31B30 31C12 33C05 42A16 35C10">
-            </div>
-        </div>
-        <div class="row">
-            <a href="https://www.w3schools.com/howto/howto_css_responsive_form.asp">Source of the HTML form.</a><input
-                type="submit" value="Submit">
-        </div>
-    </form>
+  <form onsubmit="post(); return false;">
+    <div class="row">
+      <div class="col-25">
+        <label for="title">Title</label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="title">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="text">Text</label>
+      </div>
+      <div class="col-75">
+        <textarea id="text" style="height:200px"></textarea>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="mscs">mscs</label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="mscs">
+      </div>
+    </div>
+    <div class="row">
+      <a href="https://www.w3schools.com/howto/howto_css_responsive_form.asp">Source of the HTML form.</a><input
+        type="submit" value="Submit">
+    </div>
+  </form>
 </div>
 <div id='myDiv' style="height: 800px"></div>
-<br/>
+<br>
 <a href="https://schubotz.org">Impressum</a>
-</body>
-<script lang="javascript">
-
+<script>
     async function post() {
-        document.getElementById("myDiv").innerHTML = "Loading..."; 
+        document.getElementById("myDiv").innerHTML = "Loading...";
         let response = await fetch('/classify/', {
-                'method': 'POST',
-                mode: 'no-cors',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify([].reduce.call(document.forms.item(0).elements, (X, x) => {
-                    if (x.id) {
-                        X[x.id] = x.value;
-                    }
-                    return X
-                }, {}))
-            }
-        );
+            'method': 'POST',
+            mode: 'no-cors',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify([].reduce.call(document.forms.item(0).elements, (X, x) => {
+                if (x.id) {
+                    X[x.id] = x.value;
+                }
+                return X
+            }, {}))
+        });
         if (response.ok) { // if HTTP-status is 200-299
             let json = await response.json();
             const data = [{
@@ -144,13 +146,18 @@
             }];
             const layout = {
                 title: 'Most likely MSC main class is ' + json.prediction,
-                font: {size: 18}
+                font: {
+                    size: 18
+                }
             };
-            const config = {responsive: true};
+            const config = {
+                responsive: true
+            };
             Plotly.newPlot('myDiv', data, layout, config);
         } else {
             alert("HTTP-Error: " + response.status);
         }
     }
 </script>
+</body>
 </html>
